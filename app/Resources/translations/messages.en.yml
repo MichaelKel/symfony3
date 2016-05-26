@@ -1,10 +1,11 @@
 'home': Home
 category: Category
-by: Author:
 read.more: Read more
 user: Author:
+by: Author:
 
 post:
+  user: Author:
   plural: Posts
   on: Posted on:
   latest: Latest Posts:

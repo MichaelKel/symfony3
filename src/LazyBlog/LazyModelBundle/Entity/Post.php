@@ -4,7 +4,7 @@ namespace LazyBlog\LazyModelBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints\DateTime;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -68,8 +68,7 @@ class Post
     /**
      * @var \DateTime
      *
-     *
-     * @ORM\Column(name="createdAt", type="datetime")
+     * @ORM\Column(name="createdAt", type="datetime", nullable=false)
      * @Assert\DateTime()
      */
     private $createdAt;
@@ -83,13 +82,21 @@ class Post
     private $updatedAt;
 
     /**
+     * @var string $slug
+     *
+     * @Gedmo\Slug(fields={"title"}, unique=false)
+     * @ORM\Column(length=255)
+     */
+    private $slug;
+
+    /**
      * Construct
      */
     public function __construct()
     {
         $this->tags = new ArrayCollection();
-        $this->createdAt = new \DateTime();
-        $this->updatedAt = new \DateTime();
+        //$this->createdAt = new \DateTime();
+        //$this->updatedAt = new \DateTime();
     }
 
 
@@ -280,5 +287,29 @@ class Post
         $this->user = $user;
 
         return $this;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     *
+     * @return Post
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 }
