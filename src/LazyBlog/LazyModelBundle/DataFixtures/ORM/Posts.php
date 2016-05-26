@@ -126,13 +126,18 @@ you need to split the application into reusable components, you can create your 
         );
     }
 
-    private function getCategory(ObjectManager $manager, $category)
+    /**
+     * Получить Категории
+     *
+     * @param ObjectManager $manager
+     * /@param int           $id
+     *
+     * @return int          $id
+     */
+
+    private function getCategory(ObjectManager $manager, $id)
     {
-        return $manager->getRepository('LazyModelBundle:Category')->findOneBy(
-            array(
-                'category' => $category,
-            )
-        );
+        return $manager->getRepository('LazyModelBundle:Category')->find($id);
     }
 
 }

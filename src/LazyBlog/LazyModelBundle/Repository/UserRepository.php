@@ -7,6 +7,8 @@ use Doctrine\ORM\EntityRepository;
 class UserRepository extends EntityRepository
 {
     /**
+     * @var string $result
+     *
      * @return mixed
      */
     public function findFirst()
@@ -17,9 +19,6 @@ class UserRepository extends EntityRepository
             ->setMaxResults(1);
 
         $result = $qb->getQuery()->getSingleResult();
-
-//        if ($result === null) {
-//        }
 
         return $result;
     }
