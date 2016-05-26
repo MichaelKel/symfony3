@@ -1,0 +1,15 @@
+home: Home
+category: Category
+by: Author:
+read.more: Read more
+user: Author:
+
+post:
+  plural: Posts
+  on: Posted on:
+  latest: Latest Posts:
+  title:
+      first: First post
+      second: Second post
+      third: Third post
+      other: Other post

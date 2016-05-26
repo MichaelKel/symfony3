@@ -1,0 +1,12 @@
+<article>
+    <header>
+        <h2><a href="#{#{ path:('lazyblog_lazyblog_post_show', { slug: post.slug }) }#}">{{ post.title | transchoice(255)}}</a></h2>
+    </header>
+
+    <p class="post-body">{{ post.body | transchoice(500) }} &#8212; <a href="#">{{ 'read.more' | trans }}</a></p>
+    <p class="post">
+        {{ 'post.on' | trans }} <time datetime="{{ post.createdAt | date('c') }}">{{ post.createdAt| date }}</time>
+        {{ 'by' | trans }} <a href="#{#{ path:('lazyblog_lazyblog_post_show', { slug: post.slug }) }#}">{{ post.user.name }}</a>
+    </p>
+
+</article>

@@ -5,6 +5,7 @@ namespace LazyBlog\LazyModelBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use LazyBlog\LazyModelBundle\Entity\Category;
 use LazyBlog\LazyModelBundle\Entity\Post;
 use LazyBlog\LazyModelBundle\Entity\User;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -47,6 +48,7 @@ you need to split the application into reusable components, you can create your 
         $post1->setTags('Symfony2');
         $post1->setUser($this->getUser($manager, 'Дмитрий'));
         $post1->setCreatedAt(new \DateTime('now'));
+        $post1->setCategory($this->getCategory($manager, 'qwerty'));
 
         $post2 = new Post();
         $post2->setTitle('Second post');
@@ -59,6 +61,7 @@ ORM, the Twig templating system and some other third party libraries and bundles
         $post2->setTags('Symfony3');
         $post2->setUser($this->getUser($manager, 'Алексей'));
         $post2->setCreatedAt(new \DateTime('now'));
+        $post2->setCategory($this->getCategory($manager, 'posts'));
 
 
         $post3 = new Post();
@@ -70,8 +73,9 @@ system. In fact, the application configuration is only parsed for the very first
 down to plain PHP code stored in the app/cache/ directory.');
 
         $post3->setTags('php');
-        $post3->setUser($this->getUser($manager, 'Алексей'));
+        $post3->setUser($this->getUser($manager, 'Анатолий'));
         $post3->setCreatedAt(new \DateTime('now'));
+        $post3->setCategory($this->getCategory($manager, 'news'));
 
 
         $post4 = new Post();
@@ -94,6 +98,7 @@ you need to split the application into reusable components, you can create your 
         $post4->setTags('java');
         $post4->setUser($this->getUser($manager, 'Михаил'));
         $post4->setCreatedAt(new \DateTime('now'));
+        $post4->setCategory($this->getCategory($manager, 'novosti'));
 
         $manager->persist($post1);
         $manager->persist($post2);
@@ -117,6 +122,15 @@ you need to split the application into reusable components, you can create your 
         return $manager->getRepository('LazyModelBundle:User')->findOneBy(
             array(
                 'name' => $name,
+            )
+        );
+    }
+
+    private function getCategory(ObjectManager $manager, $category)
+    {
+        return $manager->getRepository('LazyModelBundle:Category')->findOneBy(
+            array(
+                'category' => $category,
             )
         );
     }
