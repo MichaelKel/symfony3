@@ -9,7 +9,7 @@
         <h3>{{ 'post.latest' | trans }}</h3>
 
         {% for post in posts %}
-            <p class="post-body"><a href="{{ path('lazyblog_lazyblog_post_show', { slug: post.slug }) }}">{{ post.title | trans | truncate(30) }} </a></p>
+            <p class="post-body"><a href="{{ path('lazyblog_lazyblog_post_show', { slug: post.slug }) }}">{{ post.title | truncate(30) }} </a></p>
         {% endfor %}
     </aside>
 {% endblock %}

@@ -1,0 +1,26 @@
+{% extends "LazyBlogBundle::layout.html.twig" %}
+
+{% block title %}{{ 'posts' | trans({ '%name%' : user.name }) }}{% endblock %}
+
+{% block sidebar %}
+    <aside>
+        <h3>{{ 'post.by' | trans }}</h3>
+
+        <p>{{ user.name }}</p>
+    </aside>
+
+{% endblock %}
+
+{% block section %}
+    {% for post in posts %}
+
+        {{ include('LazyBlogBundle:Post:post.html.twig', { post: post }) }}
+
+        {% else %}
+
+        <p class="post">{{ 'author.empty.posts' | trans }}</p>
+
+    {% endfor %}
+
+{% endblock %}
+

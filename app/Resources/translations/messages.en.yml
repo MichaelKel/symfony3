@@ -1,16 +1,23 @@
-'home': Home
+home: Home
+
 category: Category
+
 read.more: Read more
-user: Author:
+
+posts: Post
+
 by: Author:
+user: Author:
+
 
 post:
-  user: Author:
   plural: Posts
   on: Posted on:
   latest: Latest Posts:
-  title:
-      first: First post
-      second: Second post
-      third: Third post
-      other: Other post
+  by: Author:
+  by.user: Posts by %name%
+
+author:
+  empty.posts: This author did not write any post yet.
+
+

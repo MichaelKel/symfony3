@@ -22,7 +22,7 @@ class PostRepository extends EntityRepository
      *
      * @param int $last
      *
-     * @return array
+     * @return Post
      */
     public function findLasted($last)
     {

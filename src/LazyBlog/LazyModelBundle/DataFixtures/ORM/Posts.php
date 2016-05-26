@@ -100,10 +100,33 @@ you need to split the application into reusable components, you can create your 
         $post4->setCreatedAt(new \DateTime('now'));
         $post4->setCategory($this->getCategory($manager, 'novosti'));
 
+        $post5 = new Post();
+        $post5->setTitle('5 post');
+
+        $post5->setBody('This section introduces one of the greatest and most powerful features of Symfony, the bundle system.
+A bundle is kind of like a plugin in other software. So why is it called a bundle and not a plugin? This is
+because everything is a bundle in Symfony, from the core framework features to the code you write for
+your application.
+All the code you write for your application is organized in bundles. In Symfony speak, a bundle is a
+structured set of files (PHP files, stylesheets, JavaScripts, images, ...) that implements a single feature (a
+blog, a forum, ...) and which can be easily shared with other developers.
+Bundles are first-class citizens in Symfony. This gives you the flexibility to use pre-built features packaged
+in third-party bundles or to distribute your own bundles. It makes it easy to pick and choose which
+features to enable in your application and optimize them the way you want. And at the end of the day,
+your application code is just as important as the core framework itself.
+Symfony already includes an AppBundle that you may use to start developing your application. Then, if
+you need to split the application into reusable components, you can create your own bundles.');
+
+        $post5->setTags('Symfony3.2');
+        $post5->setUser($this->getUser($manager, 'Дмитрий'));
+        $post5->setCreatedAt(new \DateTime('now'));
+        $post5->setCategory($this->getCategory($manager, 'qwertyu'));
+
         $manager->persist($post1);
         $manager->persist($post2);
         $manager->persist($post3);
         $manager->persist($post4);
+        $manager->persist($post5);
 
         $manager->flush();
 

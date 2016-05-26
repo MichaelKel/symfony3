@@ -15,7 +15,7 @@ class TagsRepository extends EntityRepository
     /**
      * @var string $result
      *
-     * @return mixed
+     * @return Tags
      */
     public function findId($id)
     {

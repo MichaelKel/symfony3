@@ -5,10 +5,10 @@
 {% block sidebar %}
 
     <aside>
-        <h3>{{ 'author' | trans }}</h3>
+        <h3>{{ 'user' | trans }}</h3>
 
         <p class="post-body">
-            <a href="#" title="{{ 'post.by.author' | trans({ '%name%' : post.user.name }) }}"></a>
+            <a href="{{ path('lazyblog_lazyblog_user_show', { slug: post.user.slug }) }}" title="{{ 'post' | trans({ '%name%' : post.user.name }) }}"></a>
             {{ post.user.name }}
         </p>
     </aside>
@@ -16,15 +16,15 @@
 {% endblock %}
 
 {% block section %}
-    <article class="post-body">
+    <article>
         <header>
             <h1>{{ post.title }}</h1>
-            <p class="">
+            <p class="post">
                 {{ 'post.on' | trans }} <time datetime="{{ post.createdAt | date('c') }}">{{ post.createdAt | date }}</time>
             </p>
         </header>
 
-        <p>{{ post.body | nl2br }}</p>
+        <p class="post-body">{{ post.body }}</p>
 
     </article>
 {% endblock %}

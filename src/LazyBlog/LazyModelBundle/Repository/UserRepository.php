@@ -3,24 +3,21 @@
 namespace LazyBlog\LazyModelBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use LazyBlog\LazyModelBundle\Entity\User;
 
 class UserRepository extends EntityRepository
 {
     /**
-     * @var string $result
-     *
-     * @return mixed
+     * @return User
      */
     public function findFirst()
     {
-        $result = '';
         $qb = $this->getQueryBuilder()
             ->orderBy('u.id', 'asc')
             ->setMaxResults(1);
 
-        $result = $qb->getQuery()->getSingleResult();
 
-        return $result;
+        return $qb->getQuery()->getSingleResult();
     }
 
     /**

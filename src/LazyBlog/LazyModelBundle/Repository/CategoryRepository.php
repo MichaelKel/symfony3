@@ -16,7 +16,7 @@ class CategoryRepository extends EntityRepository
     /**
      * @var string $result
      *
-     * @return mixed
+     * @return Category
      */
     public function findId($id)
     {

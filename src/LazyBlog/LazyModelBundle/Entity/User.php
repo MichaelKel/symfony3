@@ -2,7 +2,10 @@
 
 namespace LazyBlog\LazyModelBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+
 
 /**
  * User
@@ -55,6 +58,14 @@ class User
      * @ORM\OneToMany(targetEntity="Post", mappedBy="user", cascade={"remove"})
      */
     private $posts;
+
+    /**
+     * @var string $slug
+     *
+     * @Gedmo\Slug(fields={"name"}, unique=false)
+     * @ORM\Column(length=255)
+     */
+    private $slug;
 
     /**
      * Get id
@@ -161,12 +172,13 @@ class User
     {
         return $this->role;
     }
+
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->posts = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->posts = new ArrayCollection();
     }
 
     /**
@@ -176,7 +188,7 @@ class User
      *
      * @return User
      */
-    public function addPost(\LazyBlog\LazyModelBundle\Entity\Post $post)
+    public function addPost(Post $post)
     {
         $this->posts[] = $post;
 
@@ -188,7 +200,7 @@ class User
      *
      * @param \LazyBlog\LazyModelBundle\Entity\Post $post
      */
-    public function removePost(\LazyBlog\LazyModelBundle\Entity\Post $post)
+    public function removePost(Post $post)
     {
         $this->posts->removeElement($post);
     }
@@ -201,5 +213,29 @@ class User
     public function getPosts()
     {
         return $this->posts;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     *
+     * @return User
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 }

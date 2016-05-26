@@ -95,8 +95,8 @@ class Post
     public function __construct()
     {
         $this->tags = new ArrayCollection();
-        //$this->createdAt = new \DateTime();
-        //$this->updatedAt = new \DateTime();
+        $this->createdAt = new \DateTime();
+        $this->updatedAt = new \DateTime();
     }
 
 
