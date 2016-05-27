@@ -47,7 +47,7 @@ class PostRepository extends EntityRepository
      *
      * @return Post
      */
-    public function firstFirst()
+    public function findFirst()
     {
         $qb = $this->getQueryBuilder()
             ->orderBy('p.id', 'asc')

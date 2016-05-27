@@ -2,6 +2,7 @@
 
 namespace LazyBlog\LazyModelBundle\Entity;
 
+use Doctrine\Common\Annotations\Annotation;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -23,19 +24,18 @@ class Category
     private $id;
 
     /**
-     * @var string
+     * @var ArrayCollection
      *
-     * @ORM\Column(name="category", type="string", length=100, nullable=true)
+     * @ORM\OneToMany(targetEntity="Post", mappedBy="categories", cascade={"remove"})
      */
     private $category;
 
-    /**
-     * Construct
-     */
-    public function __construct()
-    {
+
+
+    public function __construct() {
         $this->category = new ArrayCollection();
     }
+
 
     /**
      * Get id
@@ -48,23 +48,33 @@ class Category
     }
 
     /**
-     * Set category
+     * Add category
      *
-     * @param string $category
+     * @param \LazyBlog\LazyModelBundle\Entity\Post $category
      *
      * @return Category
      */
-    public function setCategory($category)
+    public function addCategory(\LazyBlog\LazyModelBundle\Entity\Post $category)
     {
-        $this->category = $category;
+        $this->category[] = $category;
 
         return $this;
     }
 
     /**
+     * Remove category
+     *
+     * @param \LazyBlog\LazyModelBundle\Entity\Post $category
+     */
+    public function removeCategory(\LazyBlog\LazyModelBundle\Entity\Post $category)
+    {
+        $this->category->removeElement($category);
+    }
+
+    /**
      * Get category
      *
-     * @return string
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getCategory()
     {

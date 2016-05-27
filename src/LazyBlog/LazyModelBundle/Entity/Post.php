@@ -27,7 +27,6 @@ class Post
     /**
      * @var string
      *
-     * @ORM\ManyToMany(targetEntity="tags", cascade="persistence")
      * @ORM\Column(name="title", type="text")
      */
     private $title;
@@ -43,25 +42,16 @@ class Post
     /**
      * @var string
      *
-     * @ORM\ManyToMany(targetEntity="tags", cascade="persistence")
      * @ORM\Column(name="tags", type="string")
      */
     private $tags;
 
-
     /**
-     * @var string $category
-     *
-     * @ORM\ManyToOne(targetEntity="Category", inversedBy="post")
-     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
-     */
-    private $category;
-
-    /**
-     * @var string User $user
+     * @var User
      *
      * @ORM\ManyToOne(targetEntity="User", inversedBy="posts")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
+     * @Assert\NotBlank()
      */
     private $user;
 
@@ -90,11 +80,26 @@ class Post
     private $slug;
 
     /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="post", cascade={"remove"})
+     */
+    private $comments;
+
+    /**
+     * @var int
+     *
+     * @ORM\ManyToOne(targetEntity="LazyBlog\LazyModelBundle\Entity\Category", inversedBy="category")
+     * @ORM\JoinColumn(name="categories_id", referencedColumnName="id", nullable=true)
+     */
+    private $categories;
+
+    /**
      * Construct
      */
     public function __construct()
     {
-        $this->tags = new ArrayCollection();
+        $this->comments = new ArrayCollection();
         $this->createdAt = new \DateTime();
         $this->updatedAt = new \DateTime();
     }
@@ -240,31 +245,6 @@ class Post
         return $this->updatedAt;
     }
 
-
-    /**
-     * Set category
-     *
-     * @param \LazyBlog\LazyModelBundle\Entity\Category $category
-     *
-     * @return Post
-     */
-    public function setCategory(Category $category = null)
-    {
-        $this->category = $category;
-
-        return $this;
-    }
-
-    /**
-     * Get category
-     *
-     * @return \LazyBlog\LazyModelBundle\Entity\Category
-     */
-    public function getCategory()
-    {
-        return $this->category;
-    }
-
     /**
      * Get User
      *
@@ -312,4 +292,64 @@ class Post
     {
         return $this->slug;
     }
+
+    /**
+     * Add comment
+     *
+     * @param \LazyBlog\LazyModelBundle\Entity\Comment $comment
+     *
+     * @return Post
+     */
+    public function addComment(\LazyBlog\LazyModelBundle\Entity\Comment $comment)
+    {
+        $this->comments[] = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Remove comment
+     *
+     * @param \LazyBlog\LazyModelBundle\Entity\Comment $comment
+     */
+    public function removeComment(\LazyBlog\LazyModelBundle\Entity\Comment $comment)
+    {
+        $this->comments->removeElement($comment);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
+
+
+    /**
+     * Set categories
+     *
+     * @param \LazyBlog\LazyModelBundle\Entity\Category $categories
+     *
+     * @return Category
+     */
+    public function setCategories(\LazyBlog\LazyModelBundle\Entity\Category $categories)
+    {
+        $this->categories = $categories;
+
+        return $this;
+    }
+
+    /**
+     * Get categories
+     *
+     * @return \LazyBlog\LazyModelBundle\Entity\Category
+     */
+    public function getCategories()
+    {
+        return $this->categories;
+    }
+
 }

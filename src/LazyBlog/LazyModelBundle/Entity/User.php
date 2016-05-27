@@ -53,11 +53,16 @@ class User
     private $role;
 
     /**
-     * @var string $posts
+     * @var ArrayCollection
      *
      * @ORM\OneToMany(targetEntity="Post", mappedBy="user", cascade={"remove"})
      */
     private $posts;
+
+    public function __construct()
+    {
+        $this->posts = new ArrayCollection();
+    }
 
     /**
      * @var string $slug
@@ -171,14 +176,6 @@ class User
     public function getRole()
     {
         return $this->role;
-    }
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->posts = new ArrayCollection();
     }
 
     /**

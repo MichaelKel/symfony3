@@ -48,7 +48,8 @@ you need to split the application into reusable components, you can create your 
         $post1->setTags('Symfony2');
         $post1->setUser($this->getUser($manager, 'Дмитрий'));
         $post1->setCreatedAt(new \DateTime('now'));
-        $post1->setCategory($this->getCategory($manager, 'qwerty'));
+        $post1->setCategories($this->getCategory($manager, 1));
+        $post1->setTags('php');
 
         $post2 = new Post();
         $post2->setTitle('Second post');
@@ -61,7 +62,8 @@ ORM, the Twig templating system and some other third party libraries and bundles
         $post2->setTags('Symfony3');
         $post2->setUser($this->getUser($manager, 'Алексей'));
         $post2->setCreatedAt(new \DateTime('now'));
-        $post2->setCategory($this->getCategory($manager, 'posts'));
+        $post2->setCategories($this->getCategory($manager, 2));
+        $post2->setTags('php, symfony3, java, python');
 
 
         $post3 = new Post();
@@ -75,7 +77,8 @@ down to plain PHP code stored in the app/cache/ directory.');
         $post3->setTags('php');
         $post3->setUser($this->getUser($manager, 'Анатолий'));
         $post3->setCreatedAt(new \DateTime('now'));
-        $post3->setCategory($this->getCategory($manager, 'news'));
+        $post3->setCategories($this->getCategory($manager, 3));
+        $post3->setTags('php, symfony3 ');
 
 
         $post4 = new Post();
@@ -98,7 +101,8 @@ you need to split the application into reusable components, you can create your 
         $post4->setTags('java');
         $post4->setUser($this->getUser($manager, 'Михаил'));
         $post4->setCreatedAt(new \DateTime('now'));
-        $post4->setCategory($this->getCategory($manager, 'novosti'));
+        $post4->setCategories($this->getCategory($manager, 4));
+        $post4->setTags('php, symfony3, java');
 
         $post5 = new Post();
         $post5->setTitle('5 post');
@@ -120,7 +124,9 @@ you need to split the application into reusable components, you can create your 
         $post5->setTags('Symfony3.2');
         $post5->setUser($this->getUser($manager, 'Дмитрий'));
         $post5->setCreatedAt(new \DateTime('now'));
-        $post5->setCategory($this->getCategory($manager, 'qwertyu'));
+        $post5->setCategories($this->getCategory($manager, 5));
+        $post5->setTags('php, symfony3, java, python, sumsung');
+
 
         $manager->persist($post1);
         $manager->persist($post2);
@@ -153,7 +159,7 @@ you need to split the application into reusable components, you can create your 
      * Получить Категории
      *
      * @param ObjectManager $manager
-     * /@param int           $id
+     * @param int           $id
      *
      * @return int          $id
      */
