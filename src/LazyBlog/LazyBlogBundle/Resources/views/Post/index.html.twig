@@ -5,17 +5,37 @@
 {% endblock %}
 
 {% block sidebar %}
+
     <aside>
+
         <h3>{{ 'post.latest' | trans }}</h3>
 
         {% for post in posts %}
-            <p class="post-body"><a href="{{ path('lazyblog_lazyblog_post_show', { slug: post.slug }) }}">{{ post.title | truncate(30) }} </a></p>
+            <p>
+                <a href="{{ path('lazyblog_lazyblog_post_show', { slug: post.slug }) }}">{{ post.title | truncate(30) }} </a>
+            </p>
+        {% endfor %}
+        <h3>Tags cloud:</h3>
+        {% for post in posts %}
+
+               {{ post.tags | replace({',': ' ' }) }}
+
         {% endfor %}
     </aside>
 {% endblock %}
 
 {% block section %}
+
     {% for post in posts %}
         {{ include('LazyBlogBundle:Post:post.html.twig') }}
+        {% if post.tags is not empty %}
+            <p class="post">
+                Tags for post:
+                <span class="tag">{{ post.tags | replace({',': ' •' }) }}</span>
+            </p>
+        {% else %}
+            <p>There are no tags</p>
+        {% endif %}
     {% endfor %}
+
 {% endblock %}

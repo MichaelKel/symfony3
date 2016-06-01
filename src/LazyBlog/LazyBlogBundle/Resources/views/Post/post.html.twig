@@ -5,8 +5,15 @@
 
     <p class="post-body">{{ post.body | truncate(500) }} &#8212; <a href="{{ path('lazyblog_lazyblog_post_show', { slug: post.slug }) }}">{{ 'read.more' | trans }}</a></p>
     <p class="post">
-        {{ 'post.on' | trans }} <time datetime="{{ post.createdAt | date('c') }}">{{ post.createdAt| date }}</time>
+
+        {{ 'post.on' | trans }} <time datetime="{{ post.createdAt | date('c') }}">{{ post.createdAt | date('d') }} {{ months[post.createdAt | date('n')] }} {{ post.createdAt | date('Y') }} {{ year }}</time>
         {{ 'by' | trans }} <a href="{{ path('lazyblog_lazyblog_user_show', { slug: post.user.slug }) }}">{{ post.user.name }}</a>
+
+        - <a href="{{ path('lazyblog_lazyblog_post_show', { slug: post.slug }) }}#comments">
+
+            {% set count = post.comments | length %}
+            {{ 'post.comments' | transchoice(count) }}
+        </a>
     </p>
 
 </article>

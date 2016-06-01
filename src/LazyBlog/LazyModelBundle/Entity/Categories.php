@@ -5,6 +5,7 @@ namespace LazyBlog\LazyModelBundle\Entity;
 use Doctrine\Common\Annotations\Annotation;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use LazyBlog\LazyModelBundle\Entity\Post;
 
 /**
  * Category
@@ -12,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="category")
  * @ORM\Entity(repositoryClass="LazyBlog\LazyModelBundle\Repository\CategoryRepository")
  */
-class Category
+class Categories
 {
     /**
      * @var int
@@ -24,16 +25,24 @@ class Category
     private $id;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255)
+     */
+    private $name;
+
+
+    /**
      * @var ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="Post", mappedBy="categories", cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="Post", mappedBy="categories", cascade={"persist"})
      */
-    private $category;
+    private $posts;
 
 
 
     public function __construct() {
-        $this->category = new ArrayCollection();
+        $this->posts = new ArrayCollection();
     }
 
 
@@ -50,34 +59,53 @@ class Category
     /**
      * Add category
      *
-     * @param \LazyBlog\LazyModelBundle\Entity\Post $category
+     * @param Post $post
      *
-     * @return Category
+     * @return Categories
      */
-    public function addCategory(\LazyBlog\LazyModelBundle\Entity\Post $category)
+    public function addPost(Post $post)
     {
-        $this->category[] = $category;
+        $this->posts[] = $post;
 
         return $this;
     }
 
     /**
-     * Remove category
+     * Remove post
      *
-     * @param \LazyBlog\LazyModelBundle\Entity\Post $category
+     * @param Post $post
      */
-    public function removeCategory(\LazyBlog\LazyModelBundle\Entity\Post $category)
+    public function removePost(Post $post)
     {
-        $this->category->removeElement($category);
+        $this->posts->removeElement($post);
     }
 
     /**
-     * Get category
+     * Get posts
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getCategory()
+    public function getPosts()
     {
-        return $this->category;
+        return $this->posts;
     }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     *
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+
 }

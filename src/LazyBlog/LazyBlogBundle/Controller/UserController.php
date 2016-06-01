@@ -18,7 +18,6 @@ class UserController extends Controller
      */
     public function showAction($slug)
     {
-
         $user = $this->getDoctrine()->getRepository('LazyModelBundle:User')->findOneBy(
             array(
                 'slug' => $slug,
@@ -35,10 +34,11 @@ class UserController extends Controller
             )
         );
 
-            return $this->render('LazyBlogBundle:User:show.html.twig', array(
-                'user' => $user,
-                'posts' => $posts,
-                'slug' => $slug,
+            return $this->render('LazyBlogBundle:User:show.html.twig',
+                array(
+                    'user' => $user,
+                    'posts' => $posts,
+                    'slug' => $slug,
             ));
     }
 

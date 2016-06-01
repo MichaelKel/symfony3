@@ -1,5 +1,11 @@
+admin:
+    resource: "@AdminBundle/Controller/"
+    type:     annotation
+    prefix:   /admin
+
 lazy_blog:
     resource: "@LazyBlogBundle/Controller/"
     type:     annotation
     prefix:   /
+
 

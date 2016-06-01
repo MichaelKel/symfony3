@@ -70,7 +70,6 @@ class Comment
      */
     public function __construct()
     {
-        $this->post = new ArrayCollection();
         $this->createdAt = new \DateTime();
         $this->updatedAt = new \DateTime();
 
@@ -141,8 +140,6 @@ class Comment
      * @param Post $post
      *
      * @return Comment
-     * 
-     * @internal
      */
     public function setPost(Post $post)
     {
@@ -207,5 +204,10 @@ class Comment
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+    public function __toString()
+    {
+        return $this->getUserName();
     }
 }

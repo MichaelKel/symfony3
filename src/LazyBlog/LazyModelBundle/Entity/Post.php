@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
+use LazyBlog\LazyModelBundle\Entity\Categories;
 
 /**
  * Post
@@ -34,7 +35,6 @@ class Post
     /**
      * @var string
      *
-     * @ORM\ManyToMany(targetEntity="tags", cascade="persistence")
      * @ORM\Column(name="body", type="text")
      */
     private $body;
@@ -42,7 +42,7 @@ class Post
     /**
      * @var string
      *
-     * @ORM\Column(name="tags", type="string")
+     * @ORM\Column(name="tags", type="text")
      */
     private $tags;
 
@@ -89,7 +89,7 @@ class Post
     /**
      * @var int
      *
-     * @ORM\ManyToOne(targetEntity="LazyBlog\LazyModelBundle\Entity\Category", inversedBy="category")
+     * @ORM\ManyToOne(targetEntity="Categories", inversedBy="posts", cascade={"persist"})
      * @ORM\JoinColumn(name="categories_id", referencedColumnName="id", nullable=true)
      */
     private $categories;
@@ -184,18 +184,17 @@ class Post
      */
     public function getTags()
     {
-        /** @var string $tags */
-        return $this->$tags;
+        return $this->tags;
     }
 
     /**
-     * @param Tags $tags
-     */
-    public function addTag(Tags $tags)
-    {
-        $tags->addTag($this);
-        $this->$tags->add($tags);
-    }
+//     * @param Tags $tags
+//     */
+//    public function addTag(Tags $tags)
+//    {
+//        $tags->addTag($this);
+//        $this->$tags->add($tags);
+//    }
 
     /**
      * Set createdAt
@@ -331,11 +330,11 @@ class Post
     /**
      * Set categories
      *
-     * @param \LazyBlog\LazyModelBundle\Entity\Category $categories
+     * @param \LazyBlog\LazyModelBundle\Entity\Categories $categories
      *
      * @return Category
      */
-    public function setCategories(\LazyBlog\LazyModelBundle\Entity\Category $categories)
+    public function setCategories(Categories $categories)
     {
         $this->categories = $categories;
 
@@ -345,7 +344,7 @@ class Post
     /**
      * Get categories
      *
-     * @return \LazyBlog\LazyModelBundle\Entity\Category
+     * @return \LazyBlog\LazyModelBundle\Entity\Categories
      */
     public function getCategories()
     {

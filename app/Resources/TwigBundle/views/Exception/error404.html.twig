@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+    {% block body %}
+    <div class="error404">
+    <h1 class="error404">Ошибка</h1>
+    <h1>404</h1>
+        <button><a href="{{ path('lazyblog_lazyblog_post_index') }}">{{ 'home' | trans }}</a></button>
+
+    </div>
+    {% endblock %}
+

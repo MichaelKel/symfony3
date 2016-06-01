@@ -1,12 +1,13 @@
 {% extends "LazyBlogBundle::layout.html.twig" %}
 
-{% block title %}{{ 'posts' | trans({ '%name%' : user.name }) }}{% endblock %}
+{% block title %}{{ 'post.by.user' | trans({ '%name%' : user.name }) }}{% endblock %}
 
 {% block sidebar %}
     <aside>
         <h3>{{ 'post.by' | trans }}</h3>
 
         <p>{{ user.name }}</p>
+
     </aside>
 
 {% endblock %}

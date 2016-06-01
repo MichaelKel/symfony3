@@ -49,6 +49,12 @@ a:active {
     text-decoration: underline;
 }
 
+p.session-message {
+    padding: 5px;
+    color: #fff;
+    background-color: #007b00;
+}
+
 header li a {
     color: #e7e7e7;
 }
@@ -96,6 +102,33 @@ aside h3 {
     font-weight: bold;
 }
 
+aside h3 a {
+
+}
+
+#sidebar h3 p a{
+    float: right;
+    position: absolute;
+    width: 27%;
+    padding: 5px 15px;
+    margin: 5px;
+    background-color: #c1c1c1;
+    border-radius: 20px;
+    border: 1px solid #b7b7b7;
+}
+
+
+aside h3 p a {
+    float: right;
+    position: absolute;
+    width: 27%;
+    padding: 5px 15px;
+    margin: 5px;
+    background-color: #c1c1c1;
+    border-radius: 20px;
+    border: 1px solid #b7b7b7;
+}
+
 .error404 {
     z-index: 1000;
     text-align: center;
@@ -104,7 +137,7 @@ aside h3 {
 .post {
     text-align: left;
     font-size: 12px;
-    padding-bottom: 10px;
+    padding-bottom: 5px;
     color: #f25c13;
 }
 
@@ -113,12 +146,78 @@ aside h3 {
     font-size: 15px;
 }
 
+.comment {
+    text-align: left;
+    font-size: 12px;
+    padding-bottom: 0px;
+    color: #f25c13;
+}
+
+.comment-body {
+    text-align: left;
+    display: list-item;
+    font-size: 14px;
+    padding-bottom: 8px;
+    width: 100%;
+    color: #f2efdd;
+    background-color: #7e7e7e;
+    border-radius: 10px;
+    position: inherit;
+    hyphens: auto;
+}
+
+.tag {
+    font-size: 12px;
+    padding: 3px;
+    background-color: #fff;
+    border: 1px solid #a1a1a1;
+    border-radius: 5px;
+}
+
+.tags {
+    font-size: 12px;
+    text-decoration-line: none;
+    margin-top: 45px;
+    padding: 10px;
+    background-color: #eafff8;
+    border: 1px solid #a1a1a1;
+    border-radius: 8px;
+    color: #f25c13;
+}
+
 .aside {
     color: #fff;
 }
 
 .aside a:hover, a:active {
     color: black;
+}
+
+article .post {
+    margin-bottom: 10px;
+}
+
+article .comment p {
+    margin-top: 0 ;
+}
+
+form label {
+    display: block;
+    font-style: italic;
+}
+
+form input {
+    width: 300px;
+}
+
+form textarea {
+    width: 500px;
+    height: 150px;
+}
+
+form ul li {
+    list-style-type: none;
+    color: #ff0000;
 }
 
 footer {

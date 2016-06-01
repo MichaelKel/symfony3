@@ -1,8 +1,10 @@
 home: Home
-
+on: on
 category: Category
-
 read.more: Read more
+name: Name
+send: Send
+
 
 posts: Post
 
@@ -11,13 +13,23 @@ user: Author:
 
 
 post:
+  name: Name
   plural: Posts
   on: Posted on:
   latest: Latest Posts:
   by: Author:
   by.user: Posts by %name%
+  comments: '{0} No comments|{1} %count% comment|]1,Inf] %count% comments'
 
 author:
+  title: Author
   empty.posts: This author did not write any post yet.
+
+comment:
+  plural: Comments
+  singular: Comment
+  write: Write your comment
+
+tag: Tag
 
 

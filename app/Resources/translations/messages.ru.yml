@@ -1,10 +1,33 @@
 home: Главная
-by: Автор:
+on:
 category: Категории
 read.more: Читать далее
+name: Имя
+send: Отправить
+
+
+posts: Post
+
+by: Автор:
 user: Автор:
 
+
 post:
+  name: Имя
   plural: Статьи
-  on: Опубликовано:
+  on: Posted on:
   latest: Последние посты:
+  by: Автор:
+  by.user: Опубликовано: %name%
+  comments: '{0} Нет комментариев|{1} %count% Комментарий|]1,Inf] %count% Комментарии'
+
+author:
+  title: Автор:
+  empty.posts: У этого пользователя нет опубликованных статей.
+
+comment:
+  plural: Комментарии
+  singular: Комментарий
+  write: Напишите ваш комментарий
+
+tag: Тег
