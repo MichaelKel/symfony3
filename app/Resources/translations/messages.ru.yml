@@ -18,7 +18,7 @@ post:
   on: Posted on:
   latest: Последние посты:
   by: Автор:
-  by.user: Опубликовано: %name%
+  by.user: Опубликовано:
   comments: '{0} Нет комментариев|{1} %count% Комментарий|]1,Inf] %count% Комментарии'
 
 author:
